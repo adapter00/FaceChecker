@@ -10,6 +10,10 @@
 
 @interface PhotoColorLogic : NSObject
 
--(int)calColorAve :(CGPoint)start stop:(CGPoint)stop image:(UIImage *)image;
+//画像に関するロジック
+
+-(NSArray *)calColorAve :(CGPoint)mouth leftEye:(CGPoint)leftEye rightEye:(CGPoint)rightEye image:(UIImage *)image;
+-(NSArray *)createFacefeature:(UIImageView *)imageView;
+
 
 @end

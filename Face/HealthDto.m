@@ -16,5 +16,17 @@
 @synthesize healthStatus;
 @synthesize recordDate;
 
+-(id)initWithRGB :(int)r  green:(int)g blue:(int)b{
+    
+    if (self = [super init]) {
+        red=r;
+        blue=b;
+        green=g;
+        healthStatus=0;
+        recordDate=[[NSDate alloc] init];
+    }
+    
+    return self;
+}
 
 @end

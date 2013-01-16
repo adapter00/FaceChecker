@@ -11,9 +11,12 @@
 @interface ViewBuilder : NSObject
 
 
-//ロジックなものがない各ビューはここで作成すること
+//ロジックがない各ビューはここで作成すること
 
 +(UIImageView *)createImageView:(UIImage *)image;
 +(UIImage *)resizeImage:(UIImage *)image;
++(UIAlertView *)createAlert:(NSString *)titile Message:(NSString *)message buttonTitle:(NSString *)cancelButtonTitile delegate:(id)delegate;
++(UIActivityIndicatorView *)createIndicator :(UIView *)view Message:(NSString *)message;
++(UIButton *)createTranparentButton;
 
 @end

@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BaseEntity.h"
 
-@interface HealthEntity : BaseEntity
+
+@interface HealthEntity : NSObject
 
 //FMDBではプリミティブな型を使用できない為にここでラッパークラスに変更しておく
 
@@ -17,6 +17,6 @@
 @property NSNumber *red;
 @property NSNumber *blue;
 @property NSNumber *green;
-@property NSDate *recordDate;
+@property NSString *recordDate;
 
 @end

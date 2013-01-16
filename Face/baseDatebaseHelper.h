@@ -7,13 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BaseDto.h"
+#import "HealthDto.h"
 
 
 //データベースの挙動を定義しておくプロトコルメソッド
 @protocol baseDatebaseHelper <NSObject>
 
--(void)insertDatabase:(BaseDto *)dto;
+-(void)insertDatabase:(HealthDto *)dto;
 -(NSMutableArray *)selectAllData;
 -(NSMutableArray *)selectData:(NSString *)healthDate;
 

@@ -12,8 +12,10 @@
 
 @interface HealthDataDao : NSObject
 
+
 -(id)init;
 -(void)insertColum :(HealthEntity *)entity;
 -(NSMutableArray *)selectAllData;
-    
+-(void)deleteAllData;
+
 @end

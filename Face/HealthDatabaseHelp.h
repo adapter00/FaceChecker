@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "baseDatebaseHelper.h"
+#import "HealthDto.h"
 
 
 //LogicとDaoの間にあるもの
@@ -15,6 +15,7 @@
 @interface HealthDatabaseHelp : NSObject
 
 
--(void)insertDatabase:(BaseDto *)dto;
+-(void)insertDatabase:(HealthDto *)dto;
 -(NSMutableArray *)selectAllData;
+-(void)deleteAllData;
 @end

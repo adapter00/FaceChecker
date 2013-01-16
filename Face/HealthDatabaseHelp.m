@@ -12,6 +12,7 @@
 
 @implementation HealthDatabaseHelp
 
+
 -(void)insertDatabase:(HealthDto *)dto{
     HealthEntity *entity=[HealthDataDxo createHealthEntity:dto];
     HealthDataDao *dao=[[HealthDataDao alloc] init];
@@ -24,4 +25,13 @@
     return entityData;
 }
 
+
+-(void)deleteAllData{
+
+    HealthDataDao *dao=[[HealthDataDao alloc] init];
+    if ([self selectAllData] !=nil) {
+            [dao deleteAllData];
+    }
+
+}
 @end

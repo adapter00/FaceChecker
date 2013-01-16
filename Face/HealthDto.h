@@ -7,14 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BaseDto.h"
 
-@interface HealthDto :BaseDto
+
+
+@interface HealthDto :NSObject
 
 @property int healthStatus;
 @property int red;
 @property int blue;
 @property int green;
 @property NSDate *recordDate;
+
+-(id)initWithRGB :(int)r  green:(int)g blue:(int)b;
+
 
 @end

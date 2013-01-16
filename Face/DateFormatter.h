@@ -13,5 +13,7 @@
 
 
 +(NSString *)dateFormatter:(NSDate *)recordDate;
++(NSDate *)stringFormatterWithDate:(NSString *)dateString;
+
 
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "HealthEntity.h"
+#import "DateFormatter.h"
 
 @implementation HealthEntity
 
@@ -18,8 +19,12 @@
 
 -(id)init{
     if (self=[super init]) {
-        NSDate *date=[[NSDate alloc] init];
-        recordDate=date;
+        if (recordDate==nil) {
+            NSDate *date=[[NSDate alloc] init];
+            NSString *dateString=[DateFormatter dateFormatter:date];
+            recordDate=dateString;    
+        }
+        
     }
 return  self;
 }
