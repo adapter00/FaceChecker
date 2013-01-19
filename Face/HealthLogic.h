@@ -13,6 +13,8 @@
 @interface HealthLogic : NSObject
 
 //健康度を計測するためのロジック部分
+//aaaaaaaaaaaaaaaaaaaaaaaaa
+
 
 -(int)checkTodayHealth :(HealthDto *)dto :(NSMutableArray *)allData;
 
