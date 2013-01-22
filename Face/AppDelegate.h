@@ -6,6 +6,7 @@
 //  Copyright (c) 2012年 前田 恭男. All rights reserved.
 //aaaaaaaaaaaaaaaaa
 //aaaaaaaaaaaa
+//aaaaaaaaaaaaaa
 #import <UIKit/UIKit.h>
 
 @class StartViewController;
