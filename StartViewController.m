@@ -45,11 +45,11 @@
 }
 
 -(void)initialize{
-    imagePicker=[[UIImagePickerController alloc] init];
+    imagePicker = [[UIImagePickerController alloc] init];
     imagePicker.delegate=self;
     titleBar.delegate=self;
-    UIBarButtonItem *graghButton=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(transitionGraghView:)];
-    UINavigationItem *item=[titleBar.items objectAtIndex:0];
+    UIBarButtonItem *graghButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(transitionGraghView:)];
+    UINavigationItem *item = [titleBar.items objectAtIndex:0];
     item.rightBarButtonItem=graghButton;
     
     
@@ -69,8 +69,8 @@
 
 - (IBAction)cameraButton:(id)sender {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-        imagePicker.sourceType=UIImagePickerControllerSourceTypeCamera;
-        imagePicker.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        imagePicker.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
         [self presentModalViewController:imagePicker animated:YES];
     }else{
         UIAlertView *deviceAlert=[ViewBuilder createAlert:ERROR_ALERT_DEVICE_TITLE Message:ERROR_ALERT_DEVICE_CAMERA buttonTitle:COMMON_BACK delegate:self];
@@ -81,7 +81,7 @@
 
 - (IBAction)photoLibraryButton:(id)sender {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
-        imagePicker.sourceType=UIImagePickerControllerSourceTypePhotoLibrary;
+        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         imagePicker.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
         [self presentModalViewController:imagePicker animated:YES];
     }else {
@@ -120,6 +120,8 @@
         }
         [self deleteImageView];
         [self dismissViewControllerAnimated:YES completion:nil];
+    }else {
+        return;
     }
 }
 
@@ -131,10 +133,11 @@
 
 -(id)dismissIndicator:(id)selector{
     [SVProgressHUD dismiss];
-    HealthResultViewController *resultView=[[HealthResultViewController alloc]initWithNibName:@"HealthResultViewController" bundle:nil];
+    HealthResultViewController *resultView = [[HealthResultViewController alloc]initWithNibName:@"HealthResultViewController" bundle:nil];
     resultView.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
+    
     if (selector!=nil) {
-        resultView.healthStatus=selector;
+        resultView.healthStatusNumber=selector;
     }
     [self deleteImageView];
     [self presentModalViewController:resultView animated:YES];
@@ -143,7 +146,7 @@
 
 -(void)transitionGraghView:(UIBarButtonItem *)selector{
     GraghViewController *graghView_=[[GraghViewController alloc] initWithNibName:@"GraghViewController" bundle:nil];
-    graghView_.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
+    graghView_.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:graghView_ animated:YES];
 }
 

@@ -35,7 +35,11 @@
         db    = [FMDatabase databaseWithPath:[dir stringByAppendingPathComponent:HEALTH_DATA_NAME]];
         sql = CREATE_SQL;
         [db open];
-        [db executeUpdate:sql];
+        BOOL createResult=[db executeUpdate:sql];
+        if (!createResult) {
+            NSLog(@"DB Create Error ");
+        }
+        
         [db close];
     }
     return self;
@@ -44,16 +48,17 @@
 -(void)insertColum :(HealthEntity *)entity{
     sql =INSERT_SQL;
     [db open];
-    [db executeUpdate:sql,entity.recordDate,entity.red,entity.green,entity.blue,entity.healthStatus];
+    BOOL insertResult = [db executeUpdate:sql,entity.recordDate,entity.red,entity.green,entity.blue,entity.healthStatus];
+    if (!insertResult) {
+        NSLog(@"DB insert Error");
+    }
     [db close];
     
     
 }
 
 -(NSMutableArray *)selectAllData{
-    
     sql = SELECT_ALL_SQL;
-    
     [db open];
     FMResultSet *results = [db executeQuery:sql];
     NSMutableArray* entityData   = [[NSMutableArray alloc] initWithCapacity:0];
@@ -76,9 +81,10 @@
     
     sql=DELETE_ALL_DATA;
     [db open];
-    if ([db open]) {
-        [db executeUpdate:sql];    
-    }    
+    BOOL deleteResult = [db executeUpdate:sql];
+    if (!deleteResult) {
+        NSLog(@"DB delete Error");
+    }
     [db close];
     
 }

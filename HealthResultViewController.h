@@ -11,6 +11,6 @@
 @interface HealthResultViewController : StartViewController<UIAlertViewDelegate>
 
 @property (strong, nonatomic) IBOutlet UILabel *resultLabel;
-@property (strong, nonatomic)NSNumber *healthStatus;
+@property (strong, nonatomic)NSNumber *healthStatusNumber;
 
 @end

@@ -16,7 +16,7 @@
 
 @implementation HealthResultViewController
 @synthesize resultLabel;
-@synthesize healthStatus;
+@synthesize healthStatusNumber;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,8 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
-    NSString *healthString=[NSString stringWithFormat:HEALTH_STATUS_MESSAGE,[self resultText:healthStatus]];
+    NSString *healthString = [NSString stringWithFormat:HEALTH_STATUS_MESSAGE,[self resultText:healthStatusNumber]];
     resultLabel.text=healthString;
 }
 
@@ -39,8 +38,6 @@
 {
     [self setResultLabel:nil];
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -50,21 +47,22 @@
 
 -(NSString *)resultText :(NSNumber *)hStatus{
     int healthNumber=[hStatus intValue];
+    NSString *healthStatus = [[NSString alloc] init];
     switch (healthNumber) {
         case GOOD_STATUS:
-            return HEALTH_STATUS_GOOD;
+            healthStatus = HEALTH_STATUS_GOOD;
             break;
         case NORMAL_STATUS:
-            return HEALTH_STATUS_SO_GOOD;
+            healthStatus = HEALTH_STATUS_SO_GOOD;
             break;
         case WORTH_STATUS:
-            return HEALTH_STATUS_BAD;
+            healthStatus = HEALTH_STATUS_BAD;
             break;
         default:
-            return HEALTH_STATUS_ERROR;
+            healthStatus = HEALTH_STATUS_ERROR;
             break;
     }
-    return nil;
+    return healthStatus;
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{

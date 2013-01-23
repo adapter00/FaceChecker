@@ -24,9 +24,8 @@
             NSString *dateString=[DateFormatter dateFormatter:date];
             recordDate=dateString;    
         }
-        
     }
-return  self;
+    return  self;
 }
 
 @end

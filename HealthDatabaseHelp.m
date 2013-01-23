@@ -14,13 +14,13 @@
 
 
 -(void)insertDatabase:(HealthDto *)dto{
-    HealthEntity *entity=[HealthDataDxo createHealthEntity:dto];
-    HealthDataDao *dao=[[HealthDataDao alloc] init];
+    HealthEntity *entity = [HealthDataDxo createHealthEntity:dto];
+    HealthDataDao *dao = [[HealthDataDao alloc] init];
     [dao insertColum:entity];
 }
 
 -(NSMutableArray *)selectAllData{
-    HealthDataDao *db=[[HealthDataDao alloc] init];
+    HealthDataDao *db = [[HealthDataDao alloc] init];
     NSMutableArray *entityData=[db selectAllData];
     return entityData;
 }
