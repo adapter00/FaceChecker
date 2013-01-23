@@ -9,11 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @class StartViewController;
+@class MainTabViewController;
+@class GraghViewController;
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
-@property (strong, nonatomic) StartViewController *viewController;
+@property (strong, nonatomic) MainTabViewController *tabController; 
+@property (strong, nonatomic) StartViewController *startController;
+@property (strong, nonatomic) GraghViewController *graghController;
 
 @end

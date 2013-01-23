@@ -7,20 +7,30 @@
 //
 
 #import "AppDelegate.h"
-
+#import "MainTabViewController.h"
 #import "StartViewController.h"
+#import "GraghViewController.h"
 
 @implementation AppDelegate
 
-@synthesize viewController;
+@synthesize tabController=_tabController;
+@synthesize startController=_startController;
+@synthesize graghController=_graghController;
 @synthesize window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[StartViewController alloc] initWithNibName:@"MainView" bundle:nil];
-    self.window.rootViewController = self.viewController;
+    _tabController=[[MainTabViewController alloc] initWithNibName:nil bundle:nil];
+    _startController=[[StartViewController alloc] initWithNibName:@"MainView" bundle:nil];
+    _graghController=[[GraghViewController alloc] initWithNibName:@"GraghViewController" bundle:nil];
+    NSArray *views=[NSArray arrayWithObjects:_startController,_graghController, nil];
+    _tabController.viewControllers=views;
+    
+    //各バッチを設定
+    
+    self.window.rootViewController = _tabController;
     [self.window makeKeyAndVisible];
     return YES;
 }
