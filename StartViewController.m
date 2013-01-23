@@ -35,6 +35,17 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self initialize];
+    //これで起動時にカメラ起動できる？？（未確認）
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+        imagePicker.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+        [self presentModalViewController:imagePicker animated:YES];
+    }else{
+        UIAlertView *deviceAlert=[ViewBuilder createAlert:ERROR_ALERT_DEVICE_TITLE Message:ERROR_ALERT_DEVICE_CAMERA buttonTitle:COMMON_BACK delegate:self];
+        [deviceAlert show];
+        
+    }
+
 }
 
 -(void)viewDidAppear:(BOOL)animated{
