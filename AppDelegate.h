@@ -11,6 +11,7 @@
 @class StartViewController;
 @class MainTabViewController;
 @class GraghViewController;
+@class CameraViewController;
 
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -19,5 +20,6 @@
 @property (strong, nonatomic) MainTabViewController *tabController; 
 @property (strong, nonatomic) StartViewController *startController;
 @property (strong, nonatomic) GraghViewController *graghController;
+@property (strong, nonatomic) CameraViewController *cameraController;
 
 @end

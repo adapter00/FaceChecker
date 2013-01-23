@@ -10,12 +10,14 @@
 #import "MainTabViewController.h"
 #import "StartViewController.h"
 #import "GraghViewController.h"
+#import "CameraViewController.h"
 
 @implementation AppDelegate
 
 @synthesize tabController=_tabController;
 @synthesize startController=_startController;
 @synthesize graghController=_graghController;
+@synthesize cameraController=_cameraController;
 @synthesize window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -25,7 +27,8 @@
     _tabController=[[MainTabViewController alloc] initWithNibName:nil bundle:nil];
     _startController=[[StartViewController alloc] initWithNibName:@"MainView" bundle:nil];
     _graghController=[[GraghViewController alloc] initWithNibName:@"GraghViewController" bundle:nil];
-    NSArray *views=[NSArray arrayWithObjects:_startController,_graghController, nil];
+    _cameraController=[[CameraViewController alloc] initWithNibName:nil bundle:nil];
+    NSArray *views=[NSArray arrayWithObjects:_startController,_cameraController,_graghController, nil];
     _tabController.viewControllers=views;
     
     //各バッチを設定
