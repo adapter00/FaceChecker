@@ -102,8 +102,8 @@
         UIImage *resizeImage=[ViewBuilder resizeImage:originalImage];
         imageView=[ViewBuilder createImageView:resizeImage];
         [self.view addSubview:imageView];
-
-
+        
+        
         HealthStatusFacade *hManager=[[HealthStatusFacade alloc] init];
         
         //健康状態の所得
