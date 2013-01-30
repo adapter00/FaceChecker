@@ -49,7 +49,6 @@
         [deviceAlert show];
         
     }
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated{

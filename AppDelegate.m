@@ -25,17 +25,36 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     _tabController=[[MainTabViewController alloc] initWithNibName:nil bundle:nil];
-    _startController=[[StartViewController alloc] initWithNibName:@"MainView" bundle:nil];
-    _graghController=[[GraghViewController alloc] initWithNibName:@"GraghViewController" bundle:nil];
-    _cameraController=[[CameraViewController alloc] initWithNibName:nil bundle:nil];
-    NSArray *views=[NSArray arrayWithObjects:_startController,_cameraController,_graghController, nil];
-    _tabController.viewControllers=views;
-    
     //各バッチを設定
     
     self.window.rootViewController = _tabController;
+//    [self initializeTabButton];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+
+-(void)initializeTabButton{
+    NSLog(@"start");
+    UIImage *buttonImage=[UIImage imageNamed:@"cameraButton_png.png"];
+    UIButton *cameraButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    cameraButton.autoresizingMask=UIViewAutoresizingFlexibleRightMargin |UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
+    cameraButton.frame=CGRectMake(0.0, 0.0, buttonImage.size.width, buttonImage.size.height);
+    [cameraButton setBackgroundImage:buttonImage forState:UIControlStateHighlighted];
+    
+    CGFloat heightDifference=buttonImage.size.height - _tabController.tabBar.frame.size.height;
+    if (heightDifference<0) {
+        cameraButton.center=_tabController.tabBar.center;
+    }else {
+        CGPoint center=_tabController.tabBar.center;
+        center.y=center.y - heightDifference/2.0;
+        cameraButton.center=center;
+    }
+//    [_tabController.view addSubview:cameraButton];
+    [_cameraController.tabBarController.tabBar addSubview:cameraButton]; 
+    _cameraController.tabBarItem.image=[UIImage imageNamed:@"cameraButton_png.png"];
+
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
