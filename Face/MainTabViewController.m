@@ -88,18 +88,13 @@
 
 -(void)centerButtonTouch{
     self.selectedIndex=2;
-}
+            [cameraButton setBackgroundImage:[UIImage imageNamed:@"tabBar_cameraButton_ready_matte.png"] forState:UIControlStateNormal];
 
+}
 
 #pragma MATRK TODO:この遷移はTabではない
 -(void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController{
-    NSLog(@"selectedView :%@",viewController.description);
-    if(viewController==_cameraController){
-        NSLog(@"check");
-        [cameraButton setBackgroundImage:[UIImage imageNamed:@"tabBar_cameraButton_ready_matte.png"] forState:UIControlStateNormal];
-    }else{
-        [cameraButton setBackgroundImage:[UIImage imageNamed:@"camera_button_take.png"] forState:UIControlStateNormal];
-    }
+    [cameraButton setBackgroundImage:[UIImage imageNamed:@"camera_button_take.png"] forState:UIControlStateNormal];
 }
 
 @end
