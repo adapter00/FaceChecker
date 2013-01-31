@@ -11,12 +11,7 @@
 #import "HealthDto.h"
 #import "HealthLogic.h"
 #import "HealthDatabaseHelp.h"
-
-enum  {
-    MOUTH_POS = 0,
-    RIGHTEYE_POS=1,
-    LEFTEYE_POS = 2,
-};
+#import "CommonNumber.h"
 
 @implementation HealthStatusFacade
 
@@ -24,11 +19,15 @@ enum  {
 //本日の健康状態を知るメソッド
 
 
--(int)checkTodayHealth :(NSArray *)pointArray image:(UIImage *)image{
+-(NSNumber *)checkTodayHealth :(UIImage *)image{
+    
+    //座標の所得
+    PhotoColorLogic *pLogic=[[PhotoColorLogic alloc] init];
+    NSArray *pointArray=[pLogic createFacefeature:image];
+
     CGPoint mouthPos=[[pointArray objectAtIndex:MOUTH_POS] CGPointValue];
     CGPoint leftPos=[[pointArray objectAtIndex:LEFTEYE_POS] CGPointValue];
     CGPoint rightpos=[[pointArray objectAtIndex:RIGHTEYE_POS] CGPointValue];
-    PhotoColorLogic *pLogic=[[PhotoColorLogic alloc] init];
     NSArray *todayRGB=[pLogic calColorAve:mouthPos leftEye:leftPos rightEye:rightpos image:image];
     
     //dto作成
@@ -43,14 +42,25 @@ enum  {
     //健康状態の所得
     HealthLogic *hLogic=[[HealthLogic alloc] init];
     int healthStatus=[hLogic checkTodayHealth:dto :allData];
+    NSNumber *healthStatusNumber=[NSNumber numberWithInt:healthStatus];
     
     
     //今日の状態をdbに登録
     dto.healthStatus=healthStatus;
     [dbHelper insertDatabase:dto];
     
-    return healthStatus;
+    return healthStatusNumber;
     
+}
+
+-(BOOL)isFace :(UIImage *)image{
+    //座標の所得
+    PhotoColorLogic *pLogic=[[PhotoColorLogic alloc] init];
+    NSArray *pointArray=[pLogic createFacefeature:image];
+    if (pointArray.count != 0) {
+        return YES;
+    }
+    return NO;
 }
 
 -(void)deleteAllData{

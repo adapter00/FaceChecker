@@ -15,7 +15,6 @@
 		6709DA96167F04DB00F69B1A /* ViewBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 8200352D1674560800A63001 /* ViewBuilder.m */; };
 		6709DA97167F04DB00F69B1A /* DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8200357516777F6F00A63001 /* DateFormatter.m */; };
 		6709DA98167F04DB00F69B1A /* HealthDatabaseHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8200356816748FB700A63001 /* HealthDatabaseHelp.m */; };
-		6709DA99167F04DB00F69B1A /* HealthStatusFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 679F3655167B0BCE009A0414 /* HealthStatusFacade.m */; };
 		6709DA9A167F04DB00F69B1A /* HealthLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 679F3659167B0D8F009A0414 /* HealthLogic.m */; };
 		6709DA9B167F04DB00F69B1A /* PhotoColorLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 82003529167450B800A63001 /* PhotoColorLogic.m */; };
 		6709DA9C167F04DB00F69B1A /* HealthCalLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 67E58DFA1679DC64000FB4B0 /* HealthCalLogic.m */; };
@@ -45,7 +44,6 @@
 		679C77FC1681580A0013DE36 /* S7GraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = 679C77FA1681580A0013DE36 /* S7GraphView.m */; };
 		679C7801168166F60013DE36 /* GraghViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 679C77FF168166F60013DE36 /* GraghViewController.m */; };
 		679C7802168166F60013DE36 /* GraghViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 679C7800168166F60013DE36 /* GraghViewController.xib */; };
-		679F3656167B0BCE009A0414 /* HealthStatusFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 679F3655167B0BCE009A0414 /* HealthStatusFacade.m */; };
 		679F365A167B0D8F009A0414 /* HealthLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 679F3659167B0D8F009A0414 /* HealthLogic.m */; };
 		67E58DFB1679DC64000FB4B0 /* HealthCalLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 67E58DFA1679DC64000FB4B0 /* HealthCalLogic.m */; };
 		8200352A167450B800A63001 /* PhotoColorLogic.m in Sources */ = {isa = PBXBuildFile; fileRef = 82003529167450B800A63001 /* PhotoColorLogic.m */; };
@@ -64,13 +62,24 @@
 		8200356916748FB700A63001 /* HealthDatabaseHelp.m in Sources */ = {isa = PBXBuildFile; fileRef = 8200356816748FB700A63001 /* HealthDatabaseHelp.m */; };
 		820035721676332400A63001 /* StartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 820035711676332400A63001 /* StartViewController.m */; };
 		8200357616777F6F00A63001 /* DateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 8200357516777F6F00A63001 /* DateFormatter.m */; };
+		823EB66216BA9EF90050B170 /* camera_button_take.png in Resources */ = {isa = PBXBuildFile; fileRef = 823EB66016BA9EF90050B170 /* camera_button_take.png */; };
+		823EB66316BA9EF90050B170 /* camera_button_take@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 823EB66116BA9EF90050B170 /* camera_button_take@2x.png */; };
+		823EB66716BA9F040050B170 /* tabBar_cameraButton_ready_matte.png in Resources */ = {isa = PBXBuildFile; fileRef = 823EB66516BA9F040050B170 /* tabBar_cameraButton_ready_matte.png */; };
+		823EB66816BA9F040050B170 /* tabBar_cameraButton_ready_matte@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 823EB66616BA9F040050B170 /* tabBar_cameraButton_ready_matte@2x.png */; };
+		823EB66B16BA9F230050B170 /* MainTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 823EB66A16BA9F230050B170 /* MainTabViewController.m */; };
+		823EB66E16BA9F3B0050B170 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 823EB66D16BA9F3B0050B170 /* AppDelegate.m */; };
+		823EB67416BA9F720050B170 /* cameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 823EB67316BA9F720050B170 /* cameraViewController.m */; };
+		823EB67716BA9F8F0050B170 /* CommonString.m in Sources */ = {isa = PBXBuildFile; fileRef = 823EB67616BA9F8F0050B170 /* CommonString.m */; };
+		823EB67A16BA9F9B0050B170 /* CommonNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 823EB67916BA9F9B0050B170 /* CommonNumber.m */; };
+		823EB67D16BAA0000050B170 /* HealthStatusFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 823EB67C16BAA0000050B170 /* HealthStatusFacade.m */; };
+		823EB67E16BAA0430050B170 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 823EB66D16BA9F3B0050B170 /* AppDelegate.m */; };
+		823EB67F16BAA0610050B170 /* MainTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 823EB66A16BA9F230050B170 /* MainTabViewController.m */; };
 		82623E76169DB6DC00C49201 /* camera_icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 82623E75169DB6DC00C49201 /* camera_icon.jpg */; };
 		82635BFF1660628C00FF77C2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82635BFE1660628C00FF77C2 /* UIKit.framework */; };
 		82635C011660628C00FF77C2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82635C001660628C00FF77C2 /* Foundation.framework */; };
 		82635C031660628C00FF77C2 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82635C021660628C00FF77C2 /* CoreGraphics.framework */; };
 		82635C091660628C00FF77C2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 82635C071660628C00FF77C2 /* InfoPlist.strings */; };
 		82635C0B1660628C00FF77C2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 82635C0A1660628C00FF77C2 /* main.m */; };
-		82635C0F1660628C00FF77C2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 82635C0E1660628C00FF77C2 /* AppDelegate.m */; };
 		82635C111660628C00FF77C2 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 82635C101660628C00FF77C2 /* Default.png */; };
 		82635C131660628C00FF77C2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82635C121660628C00FF77C2 /* Default@2x.png */; };
 		82635C151660628C00FF77C2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82635C141660628C00FF77C2 /* Default-568h@2x.png */; };
@@ -102,8 +111,6 @@
 		679C77FE168166F60013DE36 /* GraghViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GraghViewController.h; sourceTree = "<group>"; };
 		679C77FF168166F60013DE36 /* GraghViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GraghViewController.m; sourceTree = "<group>"; };
 		679C7800168166F60013DE36 /* GraghViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GraghViewController.xib; sourceTree = "<group>"; };
-		679F3654167B0BCE009A0414 /* HealthStatusFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthStatusFacade.h; sourceTree = "<group>"; };
-		679F3655167B0BCE009A0414 /* HealthStatusFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthStatusFacade.m; sourceTree = "<group>"; };
 		679F3658167B0D8F009A0414 /* HealthLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthLogic.h; sourceTree = "<group>"; };
 		679F3659167B0D8F009A0414 /* HealthLogic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthLogic.m; sourceTree = "<group>"; };
 		67E58DF91679DC64000FB4B0 /* HealthCalLogic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthCalLogic.h; sourceTree = "<group>"; };
@@ -139,6 +146,22 @@
 		820035711676332400A63001 /* StartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartViewController.m; sourceTree = "<group>"; };
 		8200357416777F6F00A63001 /* DateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateFormatter.h; sourceTree = "<group>"; };
 		8200357516777F6F00A63001 /* DateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateFormatter.m; sourceTree = "<group>"; };
+		823EB66016BA9EF90050B170 /* camera_button_take.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_button_take.png; sourceTree = "<group>"; };
+		823EB66116BA9EF90050B170 /* camera_button_take@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera_button_take@2x.png"; sourceTree = "<group>"; };
+		823EB66516BA9F040050B170 /* tabBar_cameraButton_ready_matte.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabBar_cameraButton_ready_matte.png; sourceTree = SOURCE_ROOT; };
+		823EB66616BA9F040050B170 /* tabBar_cameraButton_ready_matte@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBar_cameraButton_ready_matte@2x.png"; sourceTree = SOURCE_ROOT; };
+		823EB66916BA9F230050B170 /* MainTabViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabViewController.h; sourceTree = "<group>"; };
+		823EB66A16BA9F230050B170 /* MainTabViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabViewController.m; sourceTree = "<group>"; };
+		823EB66C16BA9F3B0050B170 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		823EB66D16BA9F3B0050B170 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		823EB67216BA9F720050B170 /* cameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = cameraViewController.h; sourceTree = "<group>"; };
+		823EB67316BA9F720050B170 /* cameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = cameraViewController.m; sourceTree = "<group>"; };
+		823EB67516BA9F8F0050B170 /* CommonString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonString.h; sourceTree = "<group>"; };
+		823EB67616BA9F8F0050B170 /* CommonString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonString.m; sourceTree = "<group>"; };
+		823EB67816BA9F9B0050B170 /* CommonNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonNumber.h; sourceTree = "<group>"; };
+		823EB67916BA9F9B0050B170 /* CommonNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonNumber.m; sourceTree = "<group>"; };
+		823EB67B16BAA0000050B170 /* HealthStatusFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthStatusFacade.h; sourceTree = "<group>"; };
+		823EB67C16BAA0000050B170 /* HealthStatusFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthStatusFacade.m; sourceTree = "<group>"; };
 		82623E75169DB6DC00C49201 /* camera_icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = camera_icon.jpg; sourceTree = "<group>"; };
 		82635BFA1660628C00FF77C2 /* Face.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Face.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82635BFE1660628C00FF77C2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -148,8 +171,6 @@
 		82635C081660628C00FF77C2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		82635C0A1660628C00FF77C2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		82635C0C1660628C00FF77C2 /* Face-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Face-Prefix.pch"; sourceTree = "<group>"; };
-		82635C0D1660628C00FF77C2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		82635C0E1660628C00FF77C2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		82635C101660628C00FF77C2 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		82635C121660628C00FF77C2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		82635C141660628C00FF77C2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -190,8 +211,8 @@
 		6709DA91167EFCAC00F69B1A /* Facade */ = {
 			isa = PBXGroup;
 			children = (
-				679F3654167B0BCE009A0414 /* HealthStatusFacade.h */,
-				679F3655167B0BCE009A0414 /* HealthStatusFacade.m */,
+				823EB67B16BAA0000050B170 /* HealthStatusFacade.h */,
+				823EB67C16BAA0000050B170 /* HealthStatusFacade.m */,
 			);
 			name = Facade;
 			sourceTree = "<group>";
@@ -199,6 +220,10 @@
 		67483BBA169D43C9009EB361 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				823EB66516BA9F040050B170 /* tabBar_cameraButton_ready_matte.png */,
+				823EB66616BA9F040050B170 /* tabBar_cameraButton_ready_matte@2x.png */,
+				823EB66016BA9EF90050B170 /* camera_button_take.png */,
+				823EB66116BA9EF90050B170 /* camera_button_take@2x.png */,
 				82623E75169DB6DC00C49201 /* camera_icon.jpg */,
 				82635C101660628C00FF77C2 /* Default.png */,
 				82635C121660628C00FF77C2 /* Default@2x.png */,
@@ -269,6 +294,10 @@
 		8200354516746F8100A63001 /* Control */ = {
 			isa = PBXGroup;
 			children = (
+				823EB67216BA9F720050B170 /* cameraViewController.h */,
+				823EB67316BA9F720050B170 /* cameraViewController.m */,
+				823EB66916BA9F230050B170 /* MainTabViewController.h */,
+				823EB66A16BA9F230050B170 /* MainTabViewController.m */,
 				820035701676332400A63001 /* StartViewController.h */,
 				820035711676332400A63001 /* StartViewController.m */,
 				6793BE6016806E9A00C7776B /* HealthResultViewController.h */,
@@ -345,6 +374,10 @@
 		8200357316777F5B00A63001 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				823EB67816BA9F9B0050B170 /* CommonNumber.h */,
+				823EB67916BA9F9B0050B170 /* CommonNumber.m */,
+				823EB67516BA9F8F0050B170 /* CommonString.h */,
+				823EB67616BA9F8F0050B170 /* CommonString.m */,
 				8200352C1674560800A63001 /* ViewBuilder.h */,
 				8200352D1674560800A63001 /* ViewBuilder.m */,
 				8200357416777F6F00A63001 /* DateFormatter.h */,
@@ -389,9 +422,9 @@
 		82635C041660628C00FF77C2 /* Face */ = {
 			isa = PBXGroup;
 			children = (
+				823EB66C16BA9F3B0050B170 /* AppDelegate.h */,
+				823EB66D16BA9F3B0050B170 /* AppDelegate.m */,
 				67483BBA169D43C9009EB361 /* Resource */,
-				82635C0D1660628C00FF77C2 /* AppDelegate.h */,
-				82635C0E1660628C00FF77C2 /* AppDelegate.m */,
 				8200354616746F8F00A63001 /* View */,
 				67E58DF81679DC1B000FB4B0 /* Model */,
 				8200357316777F5B00A63001 /* Common */,
@@ -508,6 +541,10 @@
 				6793BE6416806E9A00C7776B /* HealthResultViewController.xib in Resources */,
 				679C7802168166F60013DE36 /* GraghViewController.xib in Resources */,
 				82623E76169DB6DC00C49201 /* camera_icon.jpg in Resources */,
+				823EB66216BA9EF90050B170 /* camera_button_take.png in Resources */,
+				823EB66316BA9EF90050B170 /* camera_button_take@2x.png in Resources */,
+				823EB66716BA9F040050B170 /* tabBar_cameraButton_ready_matte.png in Resources */,
+				823EB66816BA9F040050B170 /* tabBar_cameraButton_ready_matte@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,7 +578,6 @@
 				6709DA96167F04DB00F69B1A /* ViewBuilder.m in Sources */,
 				6709DA97167F04DB00F69B1A /* DateFormatter.m in Sources */,
 				6709DA98167F04DB00F69B1A /* HealthDatabaseHelp.m in Sources */,
-				6709DA99167F04DB00F69B1A /* HealthStatusFacade.m in Sources */,
 				6709DA9A167F04DB00F69B1A /* HealthLogic.m in Sources */,
 				6709DA9B167F04DB00F69B1A /* PhotoColorLogic.m in Sources */,
 				6709DA9C167F04DB00F69B1A /* HealthCalLogic.m in Sources */,
@@ -555,6 +591,8 @@
 				6793BE3D167FFC4300C7776B /* TestHealthEntity.m in Sources */,
 				6793BE40168005C700C7776B /* TestHealthFacade.m in Sources */,
 				6793BE4316802A4E00C7776B /* TestHealthLogic.m in Sources */,
+				823EB66B16BA9F230050B170 /* MainTabViewController.m in Sources */,
+				823EB66E16BA9F3B0050B170 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -562,8 +600,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				823EB67F16BAA0610050B170 /* MainTabViewController.m in Sources */,
+				823EB67E16BAA0430050B170 /* AppDelegate.m in Sources */,
 				82635C0B1660628C00FF77C2 /* main.m in Sources */,
-				82635C0F1660628C00FF77C2 /* AppDelegate.m in Sources */,
 				8200352A167450B800A63001 /* PhotoColorLogic.m in Sources */,
 				8200352E1674560900A63001 /* ViewBuilder.m in Sources */,
 				8200353116746E7D00A63001 /* DatabaseHelper.m in Sources */,
@@ -580,12 +619,15 @@
 				820035721676332400A63001 /* StartViewController.m in Sources */,
 				8200357616777F6F00A63001 /* DateFormatter.m in Sources */,
 				67E58DFB1679DC64000FB4B0 /* HealthCalLogic.m in Sources */,
-				679F3656167B0BCE009A0414 /* HealthStatusFacade.m in Sources */,
 				679F365A167B0D8F009A0414 /* HealthLogic.m in Sources */,
 				6793BE5B16806C4A00C7776B /* SVProgressHUD.m in Sources */,
 				6793BE6316806E9A00C7776B /* HealthResultViewContorller.m in Sources */,
 				679C77FC1681580A0013DE36 /* S7GraphView.m in Sources */,
 				679C7801168166F60013DE36 /* GraghViewController.m in Sources */,
+				823EB67416BA9F720050B170 /* cameraViewController.m in Sources */,
+				823EB67716BA9F8F0050B170 /* CommonString.m in Sources */,
+				823EB67A16BA9F9B0050B170 /* CommonNumber.m in Sources */,
+				823EB67D16BAA0000050B170 /* HealthStatusFacade.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
