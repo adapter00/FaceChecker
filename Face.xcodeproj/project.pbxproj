@@ -74,6 +74,9 @@
 		823EB67D16BAA0000050B170 /* HealthStatusFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 823EB67C16BAA0000050B170 /* HealthStatusFacade.m */; };
 		823EB67E16BAA0430050B170 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 823EB66D16BA9F3B0050B170 /* AppDelegate.m */; };
 		823EB67F16BAA0610050B170 /* MainTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 823EB66A16BA9F230050B170 /* MainTabViewController.m */; };
+		823EB68216BAB1CC0050B170 /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 823EB68116BAB1CC0050B170 /* CameraView.m */; };
+		823EB68416BAB1E60050B170 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823EB68316BAB1E60050B170 /* AVFoundation.framework */; };
+		823EB68616BAB1F30050B170 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823EB68516BAB1F30050B170 /* AssetsLibrary.framework */; };
 		82623E76169DB6DC00C49201 /* camera_icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 82623E75169DB6DC00C49201 /* camera_icon.jpg */; };
 		82635BFF1660628C00FF77C2 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82635BFE1660628C00FF77C2 /* UIKit.framework */; };
 		82635C011660628C00FF77C2 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82635C001660628C00FF77C2 /* Foundation.framework */; };
@@ -162,6 +165,10 @@
 		823EB67916BA9F9B0050B170 /* CommonNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonNumber.m; sourceTree = "<group>"; };
 		823EB67B16BAA0000050B170 /* HealthStatusFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthStatusFacade.h; sourceTree = "<group>"; };
 		823EB67C16BAA0000050B170 /* HealthStatusFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthStatusFacade.m; sourceTree = "<group>"; };
+		823EB68016BAB1CC0050B170 /* CameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraView.h; sourceTree = "<group>"; };
+		823EB68116BAB1CC0050B170 /* CameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraView.m; sourceTree = "<group>"; };
+		823EB68316BAB1E60050B170 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		823EB68516BAB1F30050B170 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		82623E75169DB6DC00C49201 /* camera_icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = camera_icon.jpg; sourceTree = "<group>"; };
 		82635BFA1660628C00FF77C2 /* Face.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Face.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82635BFE1660628C00FF77C2 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -196,6 +203,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				823EB68616BAB1F30050B170 /* AssetsLibrary.framework in Frameworks */,
+				823EB68416BAB1E60050B170 /* AVFoundation.framework in Frameworks */,
 				6793BE5C16806CFD00C7776B /* QuartzCore.framework in Frameworks */,
 				8200353316746EBA00A63001 /* libsqlite3.0.dylib in Frameworks */,
 				82635C221660B6FA00FF77C2 /* CoreImage.framework in Frameworks */,
@@ -314,6 +323,8 @@
 		8200354616746F8F00A63001 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				823EB68016BAB1CC0050B170 /* CameraView.h */,
+				823EB68116BAB1CC0050B170 /* CameraView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -389,6 +400,8 @@
 		82635BEF1660628C00FF77C2 = {
 			isa = PBXGroup;
 			children = (
+				823EB68516BAB1F30050B170 /* AssetsLibrary.framework */,
+				823EB68316BAB1E60050B170 /* AVFoundation.framework */,
 				82635C041660628C00FF77C2 /* Face */,
 				679977A5167EAF4600F1BC68 /* TestFace */,
 				82635BFD1660628C00FF77C2 /* Frameworks */,
@@ -628,6 +641,7 @@
 				823EB67716BA9F8F0050B170 /* CommonString.m in Sources */,
 				823EB67A16BA9F9B0050B170 /* CommonNumber.m in Sources */,
 				823EB67D16BAA0000050B170 /* HealthStatusFacade.m in Sources */,
+				823EB68216BAB1CC0050B170 /* CameraView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

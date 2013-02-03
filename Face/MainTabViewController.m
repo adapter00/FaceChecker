@@ -16,7 +16,7 @@
 
 @interface MainTabViewController (){
     UIButton *cameraButton;
-    CameraViewController *_cameraController;
+    HeathCheckCameraViewController *_cameraController;
 }
 
 @end
@@ -54,7 +54,7 @@
 -(void)initializeCustomTab{
     StartViewController *_startController=[[StartViewController alloc] initWithNibName:@"MainView" bundle:nil];
     GraghViewController *_graghController=[[GraghViewController alloc] initWithNibName:@"GraghViewController" bundle:nil];
-    _cameraController=[[CameraViewController alloc] initWithNibName:nil bundle:nil];
+    _cameraController=[[HeathCheckCameraViewController alloc] initWithNibName:nil bundle:nil];
     UIViewController *controller1=[[UIViewController alloc] init];
     UIViewController *controller2=[[UIViewController alloc] init];
     _cameraController.tabBarItem=[[UITabBarItem alloc] initWithTitle:@"camera" image:[UIImage imageNamed:nil] tag:0];

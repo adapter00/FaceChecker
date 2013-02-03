@@ -17,12 +17,12 @@
 #import "CommonString.h"
 
 
-@interface CameraViewController (){
+@interface HeathCheckCameraViewController (){
     UIImageView *imageView;
 }
 @end
 
-@implementation CameraViewController
+@implementation HeathCheckCameraViewController
 
 @synthesize imagePicker;
 
