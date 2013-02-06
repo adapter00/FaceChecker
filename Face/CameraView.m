@@ -7,12 +7,14 @@
 //
 
 #import "CameraView.h"
+#import "FrameRectView.h"
+
 
 static inline double radians (double degrees){return degrees * M_PI/180;}
 typedef enum RotationAngle_{
-    RotaionAngle90=90,
-    RotaionAngle180=180,
-    RotaionAngle270=270,
+RotaionAngle90=90,
+RotaionAngle180=180,
+RotaionAngle270=270,
 }RotationAngle;
 
 @interface CameraView ()
@@ -20,8 +22,8 @@ typedef enum RotationAngle_{
 -(void)callCaptureEnded;
 
 
-#pragma -mark TODO : add FrameView;
-//@property (nonatomic , retain)
+
+@property (nonatomic , retain) FrameRectView *frameRectView;
 
 
 @property (nonatomic , readonly) size_t cameraWidth;
@@ -32,7 +34,7 @@ typedef enum RotationAngle_{
 
 #ifdef __i386__
 
-@property (nonatomic , retain)AVCaptureSession *capruedSession;
+@property (nonatomic , retain)AVCaptureSession *capturedSession;
 
 #endif
 
@@ -40,19 +42,32 @@ typedef enum RotationAngle_{
 
 @implementation CameraView
 
+
+@synthesize frameRectView=_frameRectView;
+@synthesize capturedSession=_capturedSession;
+@synthesize imageBuffer=_imageBuffer;
+@synthesize capturedImage;
+@synthesize delegate=_delegate;
+
+
 #pragma mark - 
 #pragma mark public method
 
 -(id)initWithFrame:(CGRect)frame delegate:(id)delegate{
     self=[super initWithFrame:frame];
-    _deleggate=delegate;
+        _delegate=delegate;
     
-    //set frame rect View
+//    //set frame rect View
+//    
+//    {
+//        //        _frameRectView=[[FrameRectView alloc] initWithFrame:frame withCenterY:self.frame.size.height/2];
+//        //        [_frameRectView autorelease];
+//        //        [self setFrameRectView:_frameRectView];
+//        //        [self addSubview:_frameRectView];
+//        
+//    }
+    return self;
     
-    {
-    }
-return self;
-
 }
 
 
@@ -65,24 +80,32 @@ return self;
     size_t width=self.cameraHeight;
     size_t height=self.cameraHeight;
     
-#pragma  mark TODO:??
-    bitmap=width*height*4;
+    
+    bitmap=NSZoneMalloc(self.zone,width*height*4);
     CGColorSpaceRef colorSpace=CGColorSpaceCreateDeviceRGB();
     CGDataProviderRef dataProviderRef=CGDataProviderCreateWithData(NULL, bitmap, width*height*4, NULL);
     CGImageRef cgImage=CGImageCreate(width, height, 8, 32, width*4, colorSpace, kCGBitmapByteOrder32Little|kCGImageAlphaPremultipliedFirst, dataProviderRef, NULL, 0,kCGRenderingIntentDefault);
-    
+    CGImageRelease(cgImage);
+    CGColorSpaceRelease(colorSpace);
+    CGDataProviderRelease(dataProviderRef);
     
 #ifdef __i386__
     
+
     //start session open
+    self.capturedSession=[[[AVCaptureSession alloc] init] autorelease];
     
+    //select device
     AVCaptureDevice *videoCaptureDevice=nil;
     NSArray *cameraArray=[AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    
     for (AVCaptureDevice *camera in cameraArray) {
         if (camera.position == AVCaptureDevicePositionBack) {
             videoCaptureDevice=camera;
         }
     }
+    
+    
     
     //set video stream
     
@@ -90,30 +113,30 @@ return self;
     AVCaptureDeviceInput *videoInput=[AVCaptureDeviceInput deviceInputWithDevice:videoCaptureDevice error:&error];
     
     if (videoInput) {
-        [self.capruedSession addInput:videoInput];
+        [self.capturedSession addInput:videoInput];
         
         
         //config(session)
-        [self.capruedSession beginConfiguration];
-        self.capruedSession.sessionPreset=self.cameraSessionPreset;
-        [self.capruedSession commitConfiguration];
+        [self.capturedSession beginConfiguration];
+        self.capturedSession.sessionPreset=self.cameraSessionPreset;
+        [self.capturedSession commitConfiguration];
         
-    //config
-    //- set videmo mode
+        //config
+        //- set video mode
         
         if ([videoCaptureDevice lockForConfiguration:&error]) {
             
             
-        // AVMode -> autoFocus
+            // AVMode -> autoFocus
             if ([videoCaptureDevice isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus]) {
                 videoCaptureDevice.focusMode=AVCaptureFocusModeAutoFocus;
             }
-        //Expose ->auto expose
+            //Expose ->auto expose
             if ([videoCaptureDevice isExposureModeSupported:AVCaptureExposureModeContinuousAutoExposure]) {
                 videoCaptureDevice.exposureMode=AVCaptureExposureModeContinuousAutoExposure;
             }
             
-        //touvh mode ->off
+            //touvh mode ->off
             if ([videoCaptureDevice isTorchModeSupported:AVCaptureTorchModeOff]) {
                 videoCaptureDevice.torchMode=AVCaptureTorchModeOff;
             }
@@ -123,20 +146,24 @@ return self;
             NSLog(@"Error : %@",error);
         }
         
-    //Get Video data(Code Snippet SP16)
-        AVCaptureVideoDataOutput *videoOutput=[[AVCaptureVideoDataOutput alloc] init];
+        //Get Video data(Code Snippet SP16)
+        AVCaptureVideoDataOutput *videoOutput=[[[AVCaptureVideoDataOutput alloc] init] autorelease];
+        //        AVCaptureConnection *connection=[[AVCaptureConnection alloc] init];
         
         if (videoInput) {
-            videoOutput.videoSettings=[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_32ARGB] forKey:kCVPixelBufferPixelFormatTypeKey];
-            videoOutput.minFrameDuration=CMTimeMake(1, 20);            //20fps
+            videoOutput.videoSettings=[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA] forKey:kCVPixelBufferPixelFormatTypeKey];
+            //            videoOutput.minFrameDuration=CMTimeMake(1,20);            //20fps
+            //            connection.videoMinFrameDuration=CMTimeMake(1,20);
             videoOutput.alwaysDiscardsLateVideoFrames=YES;
             queue=dispatch_queue_create("maeda_t CameraView", NULL);
             [videoOutput setSampleBufferDelegate:self queue:queue];
-            [self.capruedSession addOutput:videoOutput];
+            
+            dispatch_release(queue);
+            [self.capturedSession addOutput:videoOutput];
         }
-    //start video session
+        //start video session
         if (videoInput) {
-            [self.capruedSession startRunning];
+            [self.capturedSession startRunning];
         }
     }
 #endif
@@ -146,17 +173,17 @@ return self;
 -(void)closeCameraSession{
 #ifdef __i386__
     
-    [self.capruedSession stopRunning];
-    for (AVCaptureOutput *output in self.capruedSession.outputs) {
-        [self.capruedSession removeOutput:output];
+    [self.capturedSession stopRunning];
+    for (AVCaptureOutput *output in self.capturedSession.outputs) {
+        [self.capturedSession removeOutput:output];
     }
-    for (AVCaptureInput *input in self.capruedSession.inputs) {
-        [self.capruedSession removeInput:input];
+    for (AVCaptureInput *input in self.capturedSession.inputs) {
+        [self.capturedSession removeInput:input];
     }
-    self.capruedSession=nil;
+    self.capturedSession=nil;
 #endif
 #pragma -mark TODO:??
-//    NSZoneFree(self.zone, bitmap);
+    NSZoneFree(self.zone, bitmap);
     bitmap=NULL;
 }
 
@@ -179,7 +206,7 @@ return self;
 }
 -(NSString *)cameraSessionPreset{
 #ifdef __i386__
-    return AVCaptureSessionPreset1280x720;
+    return AVCaptureSessionPreset640x480;
 #else
     return nil;
 #endif
@@ -187,7 +214,7 @@ return self;
 
 
 #pragma mark -
-#pragma mark AVCaptureCIdeoDataOutputSampleBufferDelegate
+#pragma mark AVCaptureVideoDataOutputSampleBufferDelegate
 
 #ifdef __i386__
 -(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
@@ -206,16 +233,16 @@ return self;
             
             if ([self frameMode]) {
                 
-#pragma mark TODO:??
-                //CGRect stRect = self.frameRectView.targetFrameRect;
-                CGRect stRect;
-            //Get Scale rate
+                
+                CGRect stRect = self.frameRectView.targetFrameRect;
+                
+                //Get Scale rate
                 CGFloat rateW=1.0f* self.cameraHeight / self.frame.size.width;
                 CGFloat rateH=1.0f* self.cameraWidth / self.frame.size.height;
                 CGFloat rateAll=(rateW < rateH) ? rateW : rateH;
                 
                 
-            //Core Image
+                //Core Image
                 CGFloat hiddenWidth = (self.frame.size.height / self.cameraWidth) * self.cameraWidth - self.frame.size.height;
                 CGFloat hiddenHeight=(self.frame.size.width / self.cameraHeight) * self.cameraWidth - self.frame.size.height;
                 
@@ -223,9 +250,9 @@ return self;
                 hiddenHeight = (hiddenHeight < 0) ? 0 : hiddenHeight;
                 
                 CGRect cropRect= CGRectMake(stRect.origin.x * rateAll+ hiddenWidth *rateAll / 2,
-                                             stRect.origin.y * rateAll+ hiddenHeight *rateAll / 2,
-                                             stRect.size.width *rateAll,
-                                             stRect.size.height *rateAll);
+                                            stRect.origin.y * rateAll+ hiddenHeight *rateAll / 2,
+                                            stRect.size.width *rateAll,
+                                            stRect.size.height *rateAll);
                 CGImageRef croppedImage = CGImageCreateWithImageInRect(rotatedImage.CGImage,cropRect);
                 capImage=[UIImage imageWithCGImage:croppedImage];
             }
@@ -250,17 +277,17 @@ return self;
 
 -(void)setFrameMode:(BOOL)frameMode{
     
-#pragma mark - TODO:??
-//    if (frameMode) {
-//        [self.frameRectView setHidden:NO];
-//    } else {
-//        [self.frameRectView setHidden:YES];
-//    }
+    
+    if (frameMode) {
+        [self.frameRectView setHidden:NO];
+    } else {
+        [self.frameRectView setHidden:YES];
+    }
 }
 
-#pragma mark - TODO:??
+
 - (BOOL)frameMode {
-//    return [self.frameRectView isHidden] ? NO : YES;
+    return [self.frameRectView isHidden] ? NO : YES;
 }
 
 
@@ -269,8 +296,8 @@ return self;
 
 -(void)callCaptureEnded{
     NSLog(@"IN %s", __func__);
-    if ([delegate respondsToSelector:@selector(callCaptureEnded:)]) {
-        [delegate performSelector:@selector(callCaptureEnded:) withObject:self];
+    if ([_delegate respondsToSelector:@selector(callCaptureEnded:)]) {
+        [_delegate performSelector:@selector(callCaptureEnded:) withObject:self];
     }
 }
 
@@ -321,9 +348,9 @@ return self;
     self.imageBuffer=nil;
     self.capturedImage = nil;
 #ifdef __i386__
-    self.capruedSession=nil;
+    self.capturedSession=nil;
 #endif
-//    [self setFrameRectView:nil];
-//    [super dealloc];
+    [self setFrameRectView:nil];
+    [super dealloc];
 }
 @end

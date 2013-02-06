@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import <CoreImage/CoreImage.h>
+#import "CameraView.h"
 
 @interface HeathCheckCameraViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UINavigationBarDelegate>
 
 @property  UIImagePickerController *imagePicker;
+@property (nonatomic ,retain)CameraView *cameraView;
+
 
 @end

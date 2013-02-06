@@ -87,8 +87,9 @@
 }
 
 -(void)centerButtonTouch{
+    NSLog(@"bbbbbbbbbbbbbbbbbbb");
     self.selectedIndex=2;
-            [cameraButton setBackgroundImage:[UIImage imageNamed:@"tabBar_cameraButton_ready_matte.png"] forState:UIControlStateNormal];
+    [cameraButton setBackgroundImage:[UIImage imageNamed:@"tabBar_cameraButton_ready_matte.png"] forState:UIControlStateNormal];
 
 }
 

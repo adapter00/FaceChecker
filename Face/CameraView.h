@@ -19,7 +19,15 @@
 //カメラ起動中にリアルタイム処理をするView
 @class CameraView;
 
-@interface CameraView : UIView<AVCaptureAudioDataOutputSampleBufferDelegate>{
+@protocol CameraViewDelegate <NSObject>
+
+@optional
+-(void)Capturedend:(CameraView *)cameraView;
+
+@end
+
+
+@interface CameraView : UIView<AVCaptureVideoDataOutputSampleBufferDelegate>{
     UIImage *imagebuffer;
     BOOL requireTakePhoto;
     BOOL processingtakePhoto;
@@ -31,10 +39,8 @@
     dispatch_queue_t queue;
     
 #endif
-
-    
     UIImage *capturedImage;
-    id delegate;
+
 }
 
 
@@ -59,16 +65,8 @@
 
 //set frame mode
 @property (nonatomic , assign)BOOL frameMode;
-@property (nonatomic , assign)id deleggate;
+@property (nonatomic , assign)id delegate;
 
 @end
 
 
-
-@protocol CameraViewDelegate <NSObject>
-@optional
-
-
-
--(void)Capturedend:(CameraView *)cameraView;
-@end

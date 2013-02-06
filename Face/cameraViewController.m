@@ -17,6 +17,7 @@
 #import "CommonString.h"
 
 
+
 @interface HeathCheckCameraViewController (){
     UIImageView *imageView;
 }
@@ -25,6 +26,7 @@
 @implementation HeathCheckCameraViewController
 
 @synthesize imagePicker;
+@synthesize cameraView=_cameraView;
 
 //
 //  ViewController.m
@@ -38,17 +40,27 @@
 #pragma mark LifeCycle
 - (void)viewDidLoad{
     [super viewDidLoad];
-    [self initialize];
-    //これで起動時にカメラ起動できる？？（未確認）
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        imagePicker.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self presentModalViewController:imagePicker animated:YES];
-    }else{
-        UIAlertView *deviceAlert=[ViewBuilder createAlert:ERROR_ALERT_DEVICE_TITLE Message:ERROR_ALERT_DEVICE_CAMERA buttonTitle:COMMON_BACK delegate:self];
-        [deviceAlert show];
-        
-    }
+//    [self initialize];
+//    //これで起動時にカメラ起動できる？？（未確認）
+//    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
+//        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
+//        imagePicker.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+//        [self presentModalViewController:imagePicker animated:YES];
+//    }else{
+//        UIAlertView *deviceAlert=[ViewBuilder createAlert:ERROR_ALERT_DEVICE_TITLE Message:ERROR_ALERT_DEVICE_CAMERA buttonTitle:COMMON_BACK delegate:self];
+//        [deviceAlert show];
+//        
+//    }
+        _cameraView=[[CameraView alloc]initWithFrame:CGRectMake(0, 0, 320, 460) delegate:self];
+        [self setCameraView:_cameraView];
+        [self.view addSubview:_cameraView];
+
+    
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:NO];
+    [self.cameraView openCameraSession];
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -56,6 +68,7 @@
         [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
         
     }
+    [self.cameraView closeCameraSession];
 }
 
 -(void)initialize{
@@ -73,6 +86,18 @@
     imageView=nil;
 }
 
+
+
+-(void)shutterTapped:(id)sender{
+    NSLog(@"shutter sound on");
+    [self.cameraView doCapture];
+}
+
+-(void)capptureEnded:(CameraView *)cameraView{
+    NSLog(@"%@",[[cameraView captureImage]description]);
+    
+    //処理内容
+}
 
 
 - (IBAction)cameraButton:(id)sender {
