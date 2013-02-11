@@ -20,62 +20,94 @@
 
 @interface HeathCheckCameraViewController (){
     UIImageView *imageView;
+    int total;
+    AVCaptureSession *session;
+    UIImage *capImage;
+    UIImageView *previewImageView;
+    HealthStatusFacade *hManager;
+    dispatch_queue_t logicQueue;
+    NSTimer *faceTimer;
+    dispatch_queue_t globalQueue;
 }
+
+@property AVCaptureStillImageOutput *stillImageOutput;
+@property AVCaptureVideoDataOutput *videoOutput;
 @end
+
 
 @implementation HeathCheckCameraViewController
 
-@synthesize imagePicker;
-@synthesize cameraView=_cameraView;
-
-//
-//  ViewController.m
-//  Sample2
-//
-//  Created by 前田 恭男 on 12/11/21.
-//  Copyright (c) 2012年 __MyCompanyName__. All rights reserved.
-//
-
+@synthesize stillImageOutput;
+@synthesize videoOutput;
 
 #pragma mark LifeCycle
 - (void)viewDidLoad{
     [super viewDidLoad];
-//    [self initialize];
-//    //これで起動時にカメラ起動できる？？（未確認）
-//    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-//        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-//        imagePicker.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-//        [self presentModalViewController:imagePicker animated:YES];
-//    }else{
-//        UIAlertView *deviceAlert=[ViewBuilder createAlert:ERROR_ALERT_DEVICE_TITLE Message:ERROR_ALERT_DEVICE_CAMERA buttonTitle:COMMON_BACK delegate:self];
-//        [deviceAlert show];
-//        
-//    }
-        _cameraView=[[CameraView alloc]initWithFrame:CGRectMake(0, 0, 320, 460) delegate:self];
-        [self setCameraView:_cameraView];
-        [self.view addSubview:_cameraView];
-
-    
+    hManager=[[HealthStatusFacade alloc] init];
+    total=0;
+    previewImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.view.frame.size.height)];
+    [self.view addSubview:previewImageView];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:NO];
-    [self.cameraView openCameraSession];
-}
-
--(void)viewDidAppear:(BOOL)animated{
-    if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]||
-        [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-        
-    }
-    [self.cameraView closeCameraSession];
+    [self initializeCameraView];
+    
 }
 
 -(void)initialize{
-    imagePicker = [[UIImagePickerController alloc] init];
-    imagePicker.delegate=self;
     
 }
+
+-(void)initializeCameraView{
+    NSError *error=nil;
+    session=[[AVCaptureSession alloc]init];
+    [session setSessionPreset:AVCaptureSessionPresetMedium];
+    AVCaptureDevice *device=[AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+//    AVCaptureDeviceInput *videoInput=[[AVCaptureDeviceInput alloc] initWithDevice:[self videoDeviceWithPosition:AVCaptureDevicePositionBack] error:nil];
+    
+    //画像への入力作成し、セッションに追加
+    AVCaptureDeviceInput *deviceInput=[AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
+    [session addInput:deviceInput];
+    //    stillImageOutput=[[AVCaptureStillImageOutput alloc] init];
+    
+    
+    //画像への出力作成し、セッションに追加
+    videoOutput=[[AVCaptureVideoDataOutput alloc] init];
+    [session addOutput:videoOutput];
+    
+    //ビデオ入力のキャプチャの画像の情報のキューを設定
+    dispatch_queue_t quete=dispatch_queue_create("myQueue", NULL);
+    [videoOutput setAlwaysDiscardsLateVideoFrames:YES];
+    [videoOutput setVideoSettings:[NSDictionary dictionaryWithObject:[NSNumber numberWithInt:kCVPixelFormatType_32BGRA] forKey:(id)kCVPixelBufferPixelFormatTypeKey]];
+    [videoOutput setSampleBufferDelegate:self queue:quete];
+    
+    //ビデオへの出力の画像は、BGRAで出力
+    videoOutput.videoSettings =@{(id)kCVPixelBufferPixelFormatTypeKey : [NSNumber numberWithInt:kCVPixelFormatType_32BGRA]};
+    
+    
+    //ビデオ入力のAVCaptureConnectionを取得
+    AVCaptureConnection *videoConnection=[videoOutput connectionWithMediaType:AVMediaTypeVideo];
+    
+    //１秒辺り4回画像をキャプチャ
+    videoConnection.videoMinFrameDuration=CMTimeMake(1, 20);
+    [session startRunning];
+    faceTimer=[NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(faceChecker) userInfo:nil repeats:YES];
+//    globalQueue=dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+
+}
+
+-(AVCaptureDevice *)videoDeviceWithPosition :(AVCaptureDevicePosition)position{
+    NSArray *devices=[AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    for (AVCaptureDevice *device in devices) {
+        if ([device position]==position) {
+            return  device;
+        }
+    }
+    return nil;
+}
+
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
@@ -86,77 +118,6 @@
     imageView=nil;
 }
 
-
-
--(void)shutterTapped:(id)sender{
-    NSLog(@"shutter sound on");
-    [self.cameraView doCapture];
-}
-
--(void)capptureEnded:(CameraView *)cameraView{
-    NSLog(@"%@",[[cameraView captureImage]description]);
-    
-    //処理内容
-}
-
-
-- (IBAction)cameraButton:(id)sender {
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-        imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        imagePicker.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-        [self presentModalViewController:imagePicker animated:YES];
-    }else{
-        UIAlertView *deviceAlert=[ViewBuilder createAlert:ERROR_ALERT_DEVICE_TITLE Message:ERROR_ALERT_DEVICE_CAMERA buttonTitle:COMMON_BACK delegate:self];
-        [deviceAlert show];
-        
-    }
-}
-
-- (IBAction)photoLibraryButton:(id)sender {
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]){
-        imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-        imagePicker.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
-        [self presentModalViewController:imagePicker animated:YES];
-    }else {
-        UIAlertView *deviceAlert=[ViewBuilder createAlert:ERROR_ALERT_DEVICE_TITLE Message:ERROR_ALERT_DEVICE_LIBRARY buttonTitle:COMMON_BACK delegate:self];
-        [deviceAlert show];
-        
-    }
-}
-
-
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    
-    //端末がカメラもしくはフォトライブラリーを使用できること
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]||
-        [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
-        
-        UIImage *originalImage=(UIImage *)[info objectForKey:UIImagePickerControllerOriginalImage];
-        UIImage *resizeImage=[ViewBuilder resizeImage:originalImage];
-        imageView=[ViewBuilder createImageView:resizeImage];
-        [self.view addSubview:imageView];
-        
-        
-        HealthStatusFacade *hManager=[[HealthStatusFacade alloc] init];
-        
-        //健康状態の所得
-        if ([hManager isFace:resizeImage]){
-            
-            NSNumber *healthStatusNumber=[hManager checkTodayHealth:resizeImage];
-            
-            //インジケータの表示(4秒間表示させる)
-            [SVProgressHUD showWithStatus:DIAGNOSING];
-            [self performSelector:@selector(dismissIndicator:) withObject:healthStatusNumber afterDelay:4.0f];
-        }else {
-            UIAlertView *alert=[ViewBuilder createAlert:ERROR_ALERT_NOFACE_TITLE Message:ERROR_ALERT_NOFACE_MESSAGE buttonTitle:ERROR_ALERT_NOFACE_BUTTON_TITLE delegate:self];
-            [alert show];
-        }
-        [self deleteImageView];
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }else {
-        return;
-    }
-}
 
 -(void)deleteImageView{
     [imageView removeFromSuperview];
@@ -176,11 +137,86 @@
     [self presentModalViewController:resultView animated:YES];
     return nil;
 }
+#pragma  mark- getImageMethod
 
--(void)transitionGraghView:(UIBarButtonItem *)selector{
-    GraghViewController *graghView_=[[GraghViewController alloc] initWithNibName:@"GraghViewController" bundle:nil];
-    graghView_.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentModalViewController:graghView_ animated:YES];
+
+-(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
+
+    capImage=[self imageFromSampleBufferRef:sampleBuffer];
+    dispatch_async(dispatch_get_main_queue(), ^{previewImageView.image=capImage;
+        
+    });
+    
+#pragma mark
+//    if(capImage!=nil){
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//
+//        if ([hManager isFace:capImage]){
+//            [session stopRunning];
+//            
+//            NSNumber *healthStatusNumber=[hManager checkTodayHealth:capImage];
+//            //インジケータの表示(4秒間表示させる)
+//            [SVProgressHUD showWithStatus:DIAGNOSING];
+//            [self performSelector:@selector(dismissIndicator:) withObject:healthStatusNumber afterDelay:4.0f];
+//            [faceTimer invalidate];
+//        }
+//    });
+//    }
+}
+
+-(void)healthChecker{
+    UIImage *lockImage=capImage;
+    if(lockImage!=nil){
+        if ([hManager isFace:lockImage]){
+            [session stopRunning];
+            
+            NSNumber *healthStatusNumber=[hManager checkTodayHealth:capImage];
+            //インジケータの表示(4秒間表示させる)
+            [SVProgressHUD showWithStatus:DIAGNOSING];
+            [self performSelector:@selector(dismissIndicator:) withObject:healthStatusNumber afterDelay:4.0f];
+            [faceTimer invalidate];
+        }
+    }
+}
+
+
+-(UIImage *)imageFromSampleBufferRef:(CMSampleBufferRef)samplebuffer{
+    
+    // イメージバッファの取得
+    CVImageBufferRef    buffer;
+    buffer = CMSampleBufferGetImageBuffer(samplebuffer);
+    
+    // イメージバッファのロック
+    CVPixelBufferLockBaseAddress(buffer, 0);
+    // イメージバッファ情報の取得
+    uint8_t*    base;
+    size_t      width, height, bytesPerRow;
+    base = CVPixelBufferGetBaseAddress(buffer);
+    width = CVPixelBufferGetWidth(buffer);
+    height = CVPixelBufferGetHeight(buffer);
+    bytesPerRow = CVPixelBufferGetBytesPerRow(buffer);
+    
+    // ビットマップコンテキストの作成
+    CGColorSpaceRef colorSpace;
+    CGContextRef    cgContext;
+    colorSpace = CGColorSpaceCreateDeviceRGB();
+    cgContext = CGBitmapContextCreate(
+                                      base, width, height, 8, bytesPerRow, colorSpace,
+                                      kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
+    CGColorSpaceRelease(colorSpace);
+    
+    // 画像の作成
+    CGImageRef  cgImage;
+    UIImage*    image;
+    cgImage = CGBitmapContextCreateImage(cgContext);
+    image = [UIImage imageWithCGImage:cgImage scale:1.0f
+                          orientation:UIImageOrientationRight];
+    CGImageRelease(cgImage);
+    CGContextRelease(cgContext);
+    
+    // イメージバッファのアンロック
+    CVPixelBufferUnlockBaseAddress(buffer, 0);
+    return image;
 }
 
 

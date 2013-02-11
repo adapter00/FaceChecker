@@ -34,7 +34,7 @@
 #pragma mark LifeCycle
 - (void)viewDidLoad{
     [super viewDidLoad];
-    [self initialize];
+
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -44,16 +44,6 @@
     }
 }
 
--(void)initialize{
-    imagePicker=[[UIImagePickerController alloc] init];
-    imagePicker.delegate=self;
-    titleBar.delegate=self;
-//    UIBarButtonItem *graghButton=[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(transitionGraghView:)];
-//    UINavigationItem *item=[titleBar.items objectAtIndex:0];
-//    item.rightBarButtonItem=graghButton;
-    
-    
-}
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
@@ -121,25 +111,6 @@
 -(void)deleteImageView{
     [imageView removeFromSuperview];
     imageView=nil;
-}
-
-
--(id)dismissIndicator:(id)selector{
-    [SVProgressHUD dismiss];
-    HealthResultViewController *resultView=[[HealthResultViewController alloc]initWithNibName:@"HealthResultViewController" bundle:nil];
-    resultView.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
-    if (selector!=nil) {
-        resultView.healthStatus=selector;
-    }
-    [self deleteImageView];
-    [self presentModalViewController:resultView animated:YES];
-    return 0;
-}
-
--(void)transitionGraghView:(UIBarButtonItem *)selector{
-    GraghViewController *graghView_=[[GraghViewController alloc] initWithNibName:@"GraghViewController" bundle:nil];
-    graghView_.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
-    [self presentModalViewController:graghView_ animated:YES];
 }
 
 -(void)viewDidUnload{

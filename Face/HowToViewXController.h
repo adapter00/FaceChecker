@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HowToViewXController : UIViewController
+@interface HowToViewXController : UIViewController<UIScrollViewDelegate>
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end

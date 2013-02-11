@@ -10,8 +10,8 @@
 #import "StartViewController.h"
 #import "GraghViewController.h"
 #import "CameraViewController.h"
-
-
+#import "HowToViewXController.h"
+#import "HealthKnowledgeViewController.h"
 
 
 @interface MainTabViewController (){
@@ -55,10 +55,18 @@
     StartViewController *_startController=[[StartViewController alloc] initWithNibName:@"MainView" bundle:nil];
     GraghViewController *_graghController=[[GraghViewController alloc] initWithNibName:@"GraghViewController" bundle:nil];
     _cameraController=[[HeathCheckCameraViewController alloc] initWithNibName:nil bundle:nil];
-    UIViewController *controller1=[[UIViewController alloc] init];
-    UIViewController *controller2=[[UIViewController alloc] init];
+    HowToViewXController *howViewController=[[HowToViewXController alloc] initWithNibName:@"HowToViewXController" bundle:nil];
+    HealthKnowledgeViewController *_healthKnowledgeViewController=[[HealthKnowledgeViewController alloc] initWithNibName:@"HealthKnowledgeViewController" bundle:nil];
+
+
+    
+    _startController.tabBarItem=[[UITabBarItem alloc] initWithTitle:@"START" image:nil tag:2];
     _cameraController.tabBarItem=[[UITabBarItem alloc] initWithTitle:@"camera" image:[UIImage imageNamed:nil] tag:0];
-    NSArray *views=[NSArray arrayWithObjects:_startController,_graghController,_cameraController,controller1,controller2, nil];
+    howViewController.tabBarItem=[[UITabBarItem alloc] initWithTitle:@"HOW TO" image:nil tag:1];
+    _graghController.tabBarItem=[[UITabBarItem alloc] initWithTitle:@"GRAPH" image:nil tag:4];
+     _healthKnowledgeViewController.tabBarItem=[[UITabBarItem alloc] initWithTitle:@"KNOWLEDGE" image:nil tag:3];
+
+    NSArray *views=[NSArray arrayWithObjects:_startController,_graghController,_cameraController,howViewController,_healthKnowledgeViewController, nil];
     self.viewControllers=views;
     cameraButton=[self createCustomButton];
     [self.view addSubview:cameraButton];
@@ -87,7 +95,6 @@
 }
 
 -(void)centerButtonTouch{
-    NSLog(@"bbbbbbbbbbbbbbbbbbb");
     self.selectedIndex=2;
     [cameraButton setBackgroundImage:[UIImage imageNamed:@"tabBar_cameraButton_ready_matte.png"] forState:UIControlStateNormal];
 
