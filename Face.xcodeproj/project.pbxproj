@@ -26,6 +26,10 @@
 		6709DAA2167F051500F69B1A /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82635C211660B6FA00FF77C2 /* CoreImage.framework */; };
 		6709DAA3167F053F00F69B1A /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8200353216746EBA00A63001 /* libsqlite3.0.dylib */; };
 		6709DAA4167F056100F69B1A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82635C021660628C00FF77C2 /* CoreGraphics.framework */; };
+		6787106616C1F8F900E90C97 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6787106516C1F8F900E90C97 /* CoreVideo.framework */; };
+		6787106916C1F90100E90C97 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6787106816C1F90100E90C97 /* CoreMedia.framework */; };
+		6787107316C2470500E90C97 /* HowToViewXController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6787107116C2470400E90C97 /* HowToViewXController.m */; };
+		6787107416C2470500E90C97 /* HowToViewXController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6787107216C2470400E90C97 /* HowToViewXController.xib */; };
 		6793BE39167FFA8700C7776B /* TestHealthDto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6793BE38167FFA8700C7776B /* TestHealthDto.m */; };
 		6793BE3D167FFC4300C7776B /* TestHealthEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6793BE3C167FFC4300C7776B /* TestHealthEntity.m */; };
 		6793BE40168005C700C7776B /* TestHealthFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 6793BE3F168005C700C7776B /* TestHealthFacade.m */; };
@@ -74,7 +78,6 @@
 		823EB67D16BAA0000050B170 /* HealthStatusFacade.m in Sources */ = {isa = PBXBuildFile; fileRef = 823EB67C16BAA0000050B170 /* HealthStatusFacade.m */; };
 		823EB67E16BAA0430050B170 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 823EB66D16BA9F3B0050B170 /* AppDelegate.m */; };
 		823EB67F16BAA0610050B170 /* MainTabViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 823EB66A16BA9F230050B170 /* MainTabViewController.m */; };
-		823EB68216BAB1CC0050B170 /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 823EB68116BAB1CC0050B170 /* CameraView.m */; };
 		823EB68416BAB1E60050B170 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823EB68316BAB1E60050B170 /* AVFoundation.framework */; };
 		823EB68616BAB1F30050B170 /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 823EB68516BAB1F30050B170 /* AssetsLibrary.framework */; };
 		82623E76169DB6DC00C49201 /* camera_icon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 82623E75169DB6DC00C49201 /* camera_icon.jpg */; };
@@ -87,10 +90,20 @@
 		82635C131660628C00FF77C2 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82635C121660628C00FF77C2 /* Default@2x.png */; };
 		82635C151660628C00FF77C2 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 82635C141660628C00FF77C2 /* Default-568h@2x.png */; };
 		82635C221660B6FA00FF77C2 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82635C211660B6FA00FF77C2 /* CoreImage.framework */; };
+		82719D6516C89A9800AB7B06 /* HOWTO_1.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 82719D6216C89A9800AB7B06 /* HOWTO_1.PNG */; };
+		82719D6616C89A9800AB7B06 /* HOWTO_2.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 82719D6316C89A9800AB7B06 /* HOWTO_2.PNG */; };
+		82719D6716C89A9800AB7B06 /* HOWTO_3.PNG in Resources */ = {isa = PBXBuildFile; fileRef = 82719D6416C89A9800AB7B06 /* HOWTO_3.PNG */; };
+		82719D6B16C9384F00AB7B06 /* HealthKnowledgeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 82719D6916C9384E00AB7B06 /* HealthKnowledgeViewController.m */; };
+		82719D6C16C9384F00AB7B06 /* HealthKnowledgeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 82719D6A16C9384E00AB7B06 /* HealthKnowledgeViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6709DA8E167EEE5C00F69B1A /* MainView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
+		6787106516C1F8F900E90C97 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		6787106816C1F90100E90C97 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		6787107016C2470400E90C97 /* HowToViewXController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowToViewXController.h; sourceTree = "<group>"; };
+		6787107116C2470400E90C97 /* HowToViewXController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowToViewXController.m; sourceTree = "<group>"; };
+		6787107216C2470400E90C97 /* HowToViewXController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HowToViewXController.xib; sourceTree = "<group>"; };
 		6793BE38167FFA8700C7776B /* TestHealthDto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestHealthDto.m; sourceTree = "<group>"; };
 		6793BE3C167FFC4300C7776B /* TestHealthEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestHealthEntity.m; sourceTree = "<group>"; };
 		6793BE3F168005C700C7776B /* TestHealthFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestHealthFacade.m; sourceTree = "<group>"; };
@@ -165,8 +178,6 @@
 		823EB67916BA9F9B0050B170 /* CommonNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonNumber.m; sourceTree = "<group>"; };
 		823EB67B16BAA0000050B170 /* HealthStatusFacade.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthStatusFacade.h; sourceTree = "<group>"; };
 		823EB67C16BAA0000050B170 /* HealthStatusFacade.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthStatusFacade.m; sourceTree = "<group>"; };
-		823EB68016BAB1CC0050B170 /* CameraView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraView.h; sourceTree = "<group>"; };
-		823EB68116BAB1CC0050B170 /* CameraView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraView.m; sourceTree = "<group>"; };
 		823EB68316BAB1E60050B170 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		823EB68516BAB1F30050B170 /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		82623E75169DB6DC00C49201 /* camera_icon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = camera_icon.jpg; sourceTree = "<group>"; };
@@ -182,6 +193,12 @@
 		82635C121660628C00FF77C2 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		82635C141660628C00FF77C2 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		82635C211660B6FA00FF77C2 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		82719D6216C89A9800AB7B06 /* HOWTO_1.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HOWTO_1.PNG; sourceTree = "<group>"; };
+		82719D6316C89A9800AB7B06 /* HOWTO_2.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HOWTO_2.PNG; sourceTree = "<group>"; };
+		82719D6416C89A9800AB7B06 /* HOWTO_3.PNG */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HOWTO_3.PNG; sourceTree = "<group>"; };
+		82719D6816C9384D00AB7B06 /* HealthKnowledgeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthKnowledgeViewController.h; sourceTree = "<group>"; };
+		82719D6916C9384E00AB7B06 /* HealthKnowledgeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthKnowledgeViewController.m; sourceTree = "<group>"; };
+		82719D6A16C9384E00AB7B06 /* HealthKnowledgeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HealthKnowledgeViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -203,6 +220,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6787106916C1F90100E90C97 /* CoreMedia.framework in Frameworks */,
+				6787106616C1F8F900E90C97 /* CoreVideo.framework in Frameworks */,
 				823EB68616BAB1F30050B170 /* AssetsLibrary.framework in Frameworks */,
 				823EB68416BAB1E60050B170 /* AVFoundation.framework in Frameworks */,
 				6793BE5C16806CFD00C7776B /* QuartzCore.framework in Frameworks */,
@@ -229,6 +248,9 @@
 		67483BBA169D43C9009EB361 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				82719D6216C89A9800AB7B06 /* HOWTO_1.PNG */,
+				82719D6316C89A9800AB7B06 /* HOWTO_2.PNG */,
+				82719D6416C89A9800AB7B06 /* HOWTO_3.PNG */,
 				823EB66516BA9F040050B170 /* tabBar_cameraButton_ready_matte.png */,
 				823EB66616BA9F040050B170 /* tabBar_cameraButton_ready_matte@2x.png */,
 				823EB66016BA9EF90050B170 /* camera_button_take.png */,
@@ -316,6 +338,12 @@
 				6709DA8E167EEE5C00F69B1A /* MainView.xib */,
 				6793BE6216806E9A00C7776B /* HealthResultViewController.xib */,
 				679C7800168166F60013DE36 /* GraghViewController.xib */,
+				6787107016C2470400E90C97 /* HowToViewXController.h */,
+				6787107116C2470400E90C97 /* HowToViewXController.m */,
+				6787107216C2470400E90C97 /* HowToViewXController.xib */,
+				82719D6816C9384D00AB7B06 /* HealthKnowledgeViewController.h */,
+				82719D6916C9384E00AB7B06 /* HealthKnowledgeViewController.m */,
+				82719D6A16C9384E00AB7B06 /* HealthKnowledgeViewController.xib */,
 			);
 			name = Control;
 			sourceTree = "<group>";
@@ -323,8 +351,6 @@
 		8200354616746F8F00A63001 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				823EB68016BAB1CC0050B170 /* CameraView.h */,
-				823EB68116BAB1CC0050B170 /* CameraView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -400,8 +426,6 @@
 		82635BEF1660628C00FF77C2 = {
 			isa = PBXGroup;
 			children = (
-				823EB68516BAB1F30050B170 /* AssetsLibrary.framework */,
-				823EB68316BAB1E60050B170 /* AVFoundation.framework */,
 				82635C041660628C00FF77C2 /* Face */,
 				679977A5167EAF4600F1BC68 /* TestFace */,
 				82635BFD1660628C00FF77C2 /* Frameworks */,
@@ -421,6 +445,10 @@
 		82635BFD1660628C00FF77C2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6787106816C1F90100E90C97 /* CoreMedia.framework */,
+				6787106516C1F8F900E90C97 /* CoreVideo.framework */,
+				823EB68516BAB1F30050B170 /* AssetsLibrary.framework */,
+				823EB68316BAB1E60050B170 /* AVFoundation.framework */,
 				6793BE491680630300C7776B /* QuartzCore.framework */,
 				8200353216746EBA00A63001 /* libsqlite3.0.dylib */,
 				82635C211660B6FA00FF77C2 /* CoreImage.framework */,
@@ -558,6 +586,11 @@
 				823EB66316BA9EF90050B170 /* camera_button_take@2x.png in Resources */,
 				823EB66716BA9F040050B170 /* tabBar_cameraButton_ready_matte.png in Resources */,
 				823EB66816BA9F040050B170 /* tabBar_cameraButton_ready_matte@2x.png in Resources */,
+				6787107416C2470500E90C97 /* HowToViewXController.xib in Resources */,
+				82719D6516C89A9800AB7B06 /* HOWTO_1.PNG in Resources */,
+				82719D6616C89A9800AB7B06 /* HOWTO_2.PNG in Resources */,
+				82719D6716C89A9800AB7B06 /* HOWTO_3.PNG in Resources */,
+				82719D6C16C9384F00AB7B06 /* HealthKnowledgeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,7 +674,8 @@
 				823EB67716BA9F8F0050B170 /* CommonString.m in Sources */,
 				823EB67A16BA9F9B0050B170 /* CommonNumber.m in Sources */,
 				823EB67D16BAA0000050B170 /* HealthStatusFacade.m in Sources */,
-				823EB68216BAB1CC0050B170 /* CameraView.m in Sources */,
+				6787107316C2470500E90C97 /* HowToViewXController.m in Sources */,
+				82719D6B16C9384F00AB7B06 /* HealthKnowledgeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -714,7 +748,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Don’t Code Sign";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don’t Code Sign";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -727,8 +762,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -742,14 +779,17 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "Don’t Code Sign";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "Don’t Code Sign";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -762,7 +802,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Face/Face-Prefix.pch";
 				INFOPLIST_FILE = "Face/Face-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = app;
@@ -776,7 +816,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Face/Face-Prefix.pch";
 				INFOPLIST_FILE = "Face/Face-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_AFTER_BUILD = YES;
 				WRAPPER_EXTENSION = app;

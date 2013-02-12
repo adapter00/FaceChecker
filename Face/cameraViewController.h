@@ -9,9 +9,16 @@
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
 #import <CoreImage/CoreImage.h>
+#import <CoreVideo/CoreVideo.h>
+#import <CoreMedia/CoreMedia.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <AVFoundation/AVFoundation.h>
+#import <math.h>
+#import <QuartzCore/QuartzCore.h>
 
-@interface HeathCheckCameraViewController : UIViewController<UIImagePickerControllerDelegate,UINavigationControllerDelegate,UINavigationBarDelegate>
 
-@property  UIImagePickerController *imagePicker;
+
+@interface HeathCheckCameraViewController : UIViewController<AVCaptureVideoDataOutputSampleBufferDelegate>
+
 
 @end
