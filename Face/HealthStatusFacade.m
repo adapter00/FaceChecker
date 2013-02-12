@@ -13,8 +13,23 @@
 #import "HealthDatabaseHelp.h"
 #import "CommonNumber.h"
 
+@interface HealthStatusFacade (){
+    PhotoColorLogic *pLogic;
+    NSArray *pointArray;
+}
+
+@end
+
 @implementation HealthStatusFacade
 
+-(id)init{
+    self=[super init];
+    if (self) {
+        pLogic=[[PhotoColorLogic alloc] init];
+    }
+
+    return self;
+}
 
 //本日の健康状態を知るメソッド
 
@@ -22,9 +37,6 @@
 -(NSNumber *)checkTodayHealth :(UIImage *)image{
     
     //座標の所得
-    PhotoColorLogic *pLogic=[[PhotoColorLogic alloc] init];
-    NSArray *pointArray=[pLogic createFacefeature:image];
-
     CGPoint mouthPos=[[pointArray objectAtIndex:MOUTH_POS] CGPointValue];
     CGPoint leftPos=[[pointArray objectAtIndex:LEFTEYE_POS] CGPointValue];
     CGPoint rightpos=[[pointArray objectAtIndex:RIGHTEYE_POS] CGPointValue];
@@ -54,10 +66,11 @@
 }
 
 -(BOOL)isFace :(UIImage *)image{
+    NSLog(@"check");
     //座標の所得
-    PhotoColorLogic *pLogic=[[PhotoColorLogic alloc] init];
-    NSArray *pointArray=[pLogic createFacefeature:image];
+    pointArray=[pLogic createFacefeature:image];
     if (pointArray.count != 0) {
+            NSLog(@"face attach");
         return YES;
     }
     return NO;

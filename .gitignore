@@ -3,3 +3,5 @@
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
 !*.xcworkspace/contents.xcworkspacedata
+
+FaceCheck.xcodeproj/project.xcworkspace/contents.xcworkspacedata

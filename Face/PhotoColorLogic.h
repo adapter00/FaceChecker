@@ -12,8 +12,9 @@
 
 //画像に関するロジック
 
+-(id)init;
 -(NSArray *)calColorAve :(CGPoint)mouth leftEye:(CGPoint)leftEye rightEye:(CGPoint)rightEye image:(UIImage *)image;
--(NSArray *)createFacefeature:(UIImageView *)imageView;
+-(NSArray *)createFacefeature:(UIImage *)image;
 
 
 @end

@@ -45,9 +45,9 @@
     _scrollView.delegate=self;
     _scrollView.showsVerticalScrollIndicator=YES;
     
-    UIImageView *howTo1=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HOWTO_1"]];
-    UIImageView *howTo2=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HOWTO_2"]];
-    UIImageView *howTo3=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HOWTO_3"]];
+    UIImageView *howTo1=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HOWTO_1.PNG"]];
+    UIImageView *howTo2=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HOWTO_2.PNG"]];
+    UIImageView *howTo3=[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"HOWTO_3.PNG"]];
     UITextView *text1=[[UITextView alloc] initWithFrame:CGRectMake(20, 400, 300, 40)];
     UITextView *text2=[[UITextView alloc] initWithFrame:CGRectMake(20, 740, 300, 40)];
     UITextView *text3=[[UITextView alloc] initWithFrame:CGRectMake(20, 1080, 300, 40)];

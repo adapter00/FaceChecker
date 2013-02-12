@@ -44,7 +44,6 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     hManager=[[HealthStatusFacade alloc] init];
-    total=0;
     previewImageView=[[UIImageView alloc] initWithFrame:CGRectMake(0, 0,self.view.frame.size.width, self.view.frame.size.height)];
     [self.view addSubview:previewImageView];
 }
@@ -55,21 +54,16 @@
     
 }
 
--(void)initialize{
-    
-}
 
 -(void)initializeCameraView{
     NSError *error=nil;
     session=[[AVCaptureSession alloc]init];
     [session setSessionPreset:AVCaptureSessionPresetMedium];
     AVCaptureDevice *device=[AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-//    AVCaptureDeviceInput *videoInput=[[AVCaptureDeviceInput alloc] initWithDevice:[self videoDeviceWithPosition:AVCaptureDevicePositionBack] error:nil];
     
     //画像への入力作成し、セッションに追加
     AVCaptureDeviceInput *deviceInput=[AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
     [session addInput:deviceInput];
-    //    stillImageOutput=[[AVCaptureStillImageOutput alloc] init];
     
     
     //画像への出力作成し、セッションに追加
@@ -90,10 +84,10 @@
     AVCaptureConnection *videoConnection=[videoOutput connectionWithMediaType:AVMediaTypeVideo];
     
     //１秒辺り4回画像をキャプチャ
-    videoConnection.videoMinFrameDuration=CMTimeMake(1, 20);
+    videoConnection.videoMinFrameDuration=CMTimeMake(1, 50);
     [session startRunning];
-    faceTimer=[NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(faceChecker) userInfo:nil repeats:YES];
-//    globalQueue=dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    globalQueue=dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    faceTimer=[NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(showIndicator) userInfo:nil repeats:YES];
 
 }
 
@@ -129,11 +123,10 @@
     [SVProgressHUD dismiss];
     HealthResultViewController *resultView = [[HealthResultViewController alloc]initWithNibName:@"HealthResultViewController" bundle:nil];
     resultView.modalTransitionStyle=UIModalTransitionStyleFlipHorizontal;
-    
+    NSLog(@"view!!!!!!");
     if (selector!=nil) {
         resultView.healthStatus=selector;
     }
-    [self deleteImageView];
     [self presentModalViewController:resultView animated:YES];
     return nil;
 }
@@ -142,40 +135,34 @@
 
 -(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection{
 
+    
+    //mainスレッドでキャプチャの貼付け
     capImage=[self imageFromSampleBufferRef:sampleBuffer];
-    dispatch_async(dispatch_get_main_queue(), ^{previewImageView.image=capImage;
-        
+    dispatch_async(dispatch_get_main_queue(), ^{
+        previewImageView.image=capImage;
     });
     
-#pragma mark
-//    if(capImage!=nil){
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//
-//        if ([hManager isFace:capImage]){
-//            [session stopRunning];
-//            
-//            NSNumber *healthStatusNumber=[hManager checkTodayHealth:capImage];
-//            //インジケータの表示(4秒間表示させる)
-//            [SVProgressHUD showWithStatus:DIAGNOSING];
-//            [self performSelector:@selector(dismissIndicator:) withObject:healthStatusNumber afterDelay:4.0f];
-//            [faceTimer invalidate];
-//        }
-//    });
-//    }
+//    //別スレッドで判定ロジック
+//    dispatch_async(globalQueue, ^{
+//            if ([hManager isFace:capImage]){
+//                NSLog(@"face");
+//                [self performSelector:@selector(showIndicator) withObject:nil afterDelay:1.0f];
+//                [session stopRunning];
+//            }
+//        });
 }
 
--(void)healthChecker{
-    UIImage *lockImage=capImage;
-    if(lockImage!=nil){
-        if ([hManager isFace:lockImage]){
-            [session stopRunning];
-            
-            NSNumber *healthStatusNumber=[hManager checkTodayHealth:capImage];
-            //インジケータの表示(4秒間表示させる)
-            [SVProgressHUD showWithStatus:DIAGNOSING];
-            [self performSelector:@selector(dismissIndicator:) withObject:healthStatusNumber afterDelay:4.0f];
-            [faceTimer invalidate];
-        }
+
+-(void)showIndicator{
+    if([hManager isFace:capImage]){
+    [session stopRunning];
+    NSNumber *healthStatusNumber=[hManager checkTodayHealth:capImage];
+    //インジケータの表示(4秒間表示させる)
+                    NSLog(@"INDICATOR");
+    [SVProgressHUD showWithStatus:DIAGNOSING];
+    [self performSelector:@selector(dismissIndicator:) withObject:healthStatusNumber afterDelay:2.0f];
+                    NSLog(@"GO");
+    [faceTimer invalidate];
     }
 }
 

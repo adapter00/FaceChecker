@@ -12,6 +12,8 @@
 //Viewから健康状態を知るにはここを使用すること
 @interface HealthStatusFacade : NSObject
 
+
+-(id)init;
 -(NSNumber *)checkTodayHealth :(UIImage *)image;
 -(void)deleteAllData;
 -(BOOL)isFace :(UIImage *)image;

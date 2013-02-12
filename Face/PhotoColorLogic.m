@@ -19,7 +19,22 @@ enum  {
     BLUE_POINTER=0,
 };
 
+@interface PhotoColorLogic(){
+
+}
+@end
+
 @implementation PhotoColorLogic
+
+-(id)init{
+    self=[super init];
+    if(self){
+
+
+    }
+    return self;
+        
+}
 
 
 #pragma mark -RGBAverageMethod
@@ -121,19 +136,25 @@ enum  {
 #pragma mark -FaceFeatureMethod
 
 //画像の顔検出
--(NSArray *)createFacefeature:(UIImageView *)imageView{
-    UIImage *image=imageView.image;
+-(NSArray *)createFacefeature:(UIImage *)image{
+
     //顔検出器の作成
-    NSDictionary *options=[NSDictionary dictionaryWithObject:CIDetectorAccuracyHigh forKey:CIDetectorAccuracy];
+    NSDictionary *options=[[NSDictionary alloc] initWithObjectsAndKeys:CIDetectorAccuracyHigh,CIDetectorAccuracy, nil];
     CIDetector *detector=[CIDetector detectorOfType:CIDetectorTypeFace context:nil options:options];
     CIImage *ciImage=[[CIImage alloc] initWithCGImage:image.CGImage];
     NSArray *array=[detector featuresInImage:ciImage];
-    
+    detector=NULL;
+
+
     //各パーツの取得
     for (CIFaceFeature *faceFeature in array) {
+        UIImageView *imageView=[[UIImageView alloc] initWithImage:image];
+        NSLog(@"face get");
         return [self PartsOfFace:faceFeature View:imageView];
     }
-    return 0;
+    ciImage=nil;
+    array=nil;
+    return nil;
 }
 
 
