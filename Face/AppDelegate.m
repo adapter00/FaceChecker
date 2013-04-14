@@ -7,22 +7,54 @@
 //
 
 #import "AppDelegate.h"
-
+#import "MainTabViewController.h"
 #import "StartViewController.h"
+#import "GraghViewController.h"
+#import "CameraViewController.h"
 
 @implementation AppDelegate
 
-@synthesize viewController;
+@synthesize tabController=_tabController;
+@synthesize startController=_startController;
+@synthesize graghController=_graghController;
+@synthesize cameraController=_cameraController;
 @synthesize window;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.viewController = [[StartViewController alloc] initWithNibName:@"MainView" bundle:nil];
-    self.window.rootViewController = self.viewController;
+    _tabController=[[MainTabViewController alloc] initWithNibName:nil bundle:nil];
+    //各バッチを設定
+    
+    self.window.rootViewController = _tabController;
+//    [self initializeTabButton];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+
+-(void)initializeTabButton{
+    NSLog(@"start");
+    UIImage *buttonImage=[UIImage imageNamed:@"cameraButton_png.png"];
+    UIButton *cameraButton=[UIButton buttonWithType:UIButtonTypeCustom];
+    cameraButton.autoresizingMask=UIViewAutoresizingFlexibleRightMargin |UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin;
+    cameraButton.frame=CGRectMake(0.0, 0.0, buttonImage.size.width, buttonImage.size.height);
+    [cameraButton setBackgroundImage:buttonImage forState:UIControlStateHighlighted];
+    
+    CGFloat heightDifference=buttonImage.size.height - _tabController.tabBar.frame.size.height;
+    if (heightDifference<0) {
+        cameraButton.center=_tabController.tabBar.center;
+    }else {
+        CGPoint center=_tabController.tabBar.center;
+        center.y=center.y - heightDifference/2.0;
+        cameraButton.center=center;
+    }
+//    [_tabController.view addSubview:cameraButton];
+    [_cameraController.tabBarController.tabBar addSubview:cameraButton]; 
+    _cameraController.tabBarItem.image=[UIImage imageNamed:@"cameraButton_png.png"];
+
+
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

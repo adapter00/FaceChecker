@@ -37,6 +37,9 @@ enum{
     // Do any additional setup after loading the view from its nib.
     NSString *healthString=[NSString stringWithFormat:@"あなたの健康状態は%@\nになります",[self resultText:healthStatus]];
     resultLabel.text=healthString;
+    if(resultLabel.text==nil){
+            resultLabel.text=@"エラーなので死んでください";
+    }
 }
 
 - (void)viewDidUnload
