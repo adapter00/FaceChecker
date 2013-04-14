@@ -20,7 +20,8 @@ enum  {
 };
 
 @interface PhotoColorLogic(){
-
+    NSArray *array;
+    CIDetector *detector;
 }
 @end
 
@@ -29,8 +30,6 @@ enum  {
 -(id)init{
     self=[super init];
     if(self){
-
-
     }
     return self;
         
@@ -138,18 +137,24 @@ enum  {
 //画像の顔検出
 -(NSArray *)createFacefeature:(UIImage *)image{
 
+
     //顔検出器の作成
-    NSDictionary *options=[[NSDictionary alloc] initWithObjectsAndKeys:CIDetectorAccuracyHigh,CIDetectorAccuracy, nil];
-    CIDetector *detector=[CIDetector detectorOfType:CIDetectorTypeFace context:nil options:options];
     CIImage *ciImage=[[CIImage alloc] initWithCGImage:image.CGImage];
-    NSArray *array=[detector featuresInImage:ciImage];
-    detector=NULL;
+    NSNumber *orientation=[NSNumber numberWithInt:[image imageOrientation]+1];
+    NSDictionary *dictionary=[NSDictionary dictionaryWithObject:orientation forKey:CIDetectorImageOrientation];
+    
+    NSLog(@"Image%@",image.description);
+    NSDictionary *options=[[NSDictionary alloc] initWithObjectsAndKeys:CIDetectorAccuracyHigh,CIDetectorAccuracy, nil];
+    detector=[CIDetector detectorOfType:CIDetectorTypeFace context:nil options:options];
+    array=[detector featuresInImage:ciImage options:dictionary];
 
 
     //各パーツの取得
     for (CIFaceFeature *faceFeature in array) {
         UIImageView *imageView=[[UIImageView alloc] initWithImage:image];
         NSLog(@"face get");
+        ciImage=nil;
+        array=nil;
         return [self PartsOfFace:faceFeature View:imageView];
     }
     ciImage=nil;
@@ -166,8 +171,6 @@ enum  {
         const CGPoint mouthPos=CGPointApplyAffineTransform(faceFeature.mouthPosition, transform);
         const CGPoint righteye=CGPointApplyAffineTransform(faceFeature.rightEyePosition, transform);
         const CGPoint leftEye=CGPointApplyAffineTransform(faceFeature.leftEyePosition, transform);
-
-
         NSArray *pointArray=[NSArray arrayWithObjects:[self changeNumber:mouthPos],[self changeNumber:righteye],[self changeNumber:leftEye], nil];
         return pointArray;
     }

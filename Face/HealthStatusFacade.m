@@ -66,7 +66,6 @@
 }
 
 -(BOOL)isFace :(UIImage *)image{
-    NSLog(@"check");
     //座標の所得
     pointArray=[pLogic createFacefeature:image];
     if (pointArray.count != 0) {
