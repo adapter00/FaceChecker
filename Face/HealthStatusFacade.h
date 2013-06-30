@@ -12,6 +12,9 @@
 //Viewから健康状態を知るにはここを使用すること
 @interface HealthStatusFacade : NSObject
 
--(int)checkTodayHealth :(NSArray *)pointArray image:(UIImage *)image;
+
+-(id)init;
+-(NSNumber *)checkTodayHealth :(UIImage *)image;
 -(void)deleteAllData;
+-(BOOL)isFace :(UIImage *)image;
 @end
